@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management System</title>
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-hospital-user logo-icon"></i>
+                <h2>MediCare</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="nav-links">
+                    <li><a href="#" data-view="dashboard-view" class="active"><i class="fa-solid fa-chart-pie"></i>
+                            Dashboard</a></li>
+                    <li><a href="#" data-view="patients-view"><i class="fa-solid fa-bed-pulse"></i> Patients</a></li>
+                    <li><a href="#" data-view="appointments-view"><i class="fa-regular fa-calendar-check"></i>
+                            Appointments</a></li>
+                    <li><a href="#" data-view="doctors-view"><i class="fa-solid fa-user-doctor"></i> Doctors</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-profile">
+                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                    <span>Admin</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+
+                <!-- DASHBOARD VIEW -->
+                <section id="dashboard-view">
+                    <div class="page-title">
+                        <h1>Dashboard Summary</h1>
+                    </div>
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-blue"><i class="fa-solid fa-users"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Patients</h3>
+                                <h2 id="dashTotalPatients">0</h2>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-green"><i class="fa-solid fa-calendar-day"></i></div>
+                            <div class="stat-info">
+                                <h3>Appointments</h3>
+                                <h2 id="dashTotalAppointments">0</h2>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-purple"><i class="fa-solid fa-user-doctor"></i></div>
+                            <div class="stat-info">
+                                <h3>Doctors</h3>
+                                <h2 id="dashTotalDoctors">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PATIENTS VIEW -->
+                <section id="patients-view" class="hidden">
+                    <div class="page-title">
+                        <h1>Patients Overview</h1>
+                        <button class="btn btn-primary" onclick="window.openPatientModal()"><i
+                                class="fa-solid fa-plus"></i> New Patient</button>
+                    </div>
+
+                    <div class="card data-card">
+                        <div class="card-header">
+                            <h3>Patient List</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Phone</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="patientTableBody">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- DOCTORS VIEW -->
+                <section id="doctors-view" class="hidden">
+                    <div class="page-title">
+                        <h1>Doctors Overview</h1>
+                        <button class="btn btn-primary" onclick="window.openDoctorModal()"><i
+                                class="fa-solid fa-plus"></i> New Doctor</button>
+                    </div>
+
+                    <div class="card data-card">
+                        <div class="card-header">
+                            <h3>Doctor Directory</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Specialization</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="doctorTableBody">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- APPOINTMENTS VIEW -->
+                <section id="appointments-view" class="hidden">
+                    <div class="page-title">
+                        <h1>Appointments</h1>
+                        <button class="btn btn-primary" onclick="window.openAppointmentModal()"><i
+                                class="fa-solid fa-plus"></i> Schedule Appointment</button>
+                    </div>
+
+                    <div class="card data-card">
+                        <div class="card-header">
+                            <h3>Upcoming Appointments</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Patient</th>
+                                        <th>Doctor</th>
+                                        <th>Date/Time</th>
+                                        <th>Status</th>
+                                        <th>Reason</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointmentTableBody">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- SHARED MODAL OVERLAY -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+        <div class="modal-content" id="modalContent">
+            <!-- Modal Header, Body, Footer injected here via JS -->
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS CONTAINER -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
